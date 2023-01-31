@@ -48,6 +48,38 @@
 <script>
 const bands = ['The Plot in You', 'The Devil Wears Prada', 'Pierce the Veil', 'Norma Jean', 'The Bled', 'Say Anything', 'The Midway State', 'We Came as Romans', 'Counterparts', 'Oh, Sleeper', 'A Skylit Drive', 'Anywhere But Here', 'An Old Dog'];
 
+function strip(bandName) {
+  // we add the space so that "anywhere" in band name won't be included
+  // this regular expression is saying replace any of these with nothing
+  // .trim will remove any spaces after it
+  return bandName.replace(/^(an |the |a)/i, '').trim();
+}
+
+
+
+// the parameters in sort() are a = The first element for comparison and b = The second element for comparison.
+const sortedBands = bands.sort(function (a, b) {
+
+  // this > logic works because it's determining if a is greater, which will also apply to
+  // whether it comes first alphabetically
+  if(strip(a) > strip(b)) {
+    return 1
+  } else {
+    return -1
+  }
+});
+
+// shorthand of above^
+// const sortedBands = bands.sort((a, b) => strip(a) > strip(b) ? 1 : -1);
+
+
+document.querySelector('#bands').innerHTML = sortedBands.map(band => `<li>${band}</li>`).join('')
+// takes the element and sets the innerHTML to be sorted bands
+// we map over each band name
+// this will return an array, so we we want to join it
+console.log(sortedBands);
+
+
 
 </script>
 
