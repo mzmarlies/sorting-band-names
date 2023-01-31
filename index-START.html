@@ -74,9 +74,12 @@ const sortedBands = bands.sort(function (a, b) {
 
 
 document.querySelector('#bands').innerHTML = sortedBands.map(band => `<li>${band}</li>`).join('')
-// takes the element and sets the innerHTML to be sorted bands
-// we map over each band name
-// this will return an array, so we we want to join it
+// - Takes the element and sets the innerHTML to be the sorted bands
+// - We map over each band name
+// - This will return an array, so we we want to join it so our list on the page 
+//   doesnt' have commas
+// - Because we used innerHTML on an array and not a string, the DOM automatically calls 
+//   toString() on your array, causing there to be commas separating the band names
 console.log(sortedBands);
 
 
